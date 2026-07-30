@@ -581,7 +581,7 @@ html,body{overflow-x:hidden;touch-action:pan-y;}
         </div>
         <h2 class="font-syne text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
           Trabajos<br>
-          <span class="bg-gradient-to-r from-coral via-hotpink to-electric bg-clip-text text-transparent">Seleccionados</span>
+          <span class="text-4xl bg-gradient-to-r from-coral via-hotpink to-electric bg-clip-text text-transparent">Seleccionados</span>
         </h2>
       </div>
       <p class="text-white/40 max-w-sm text-sm leading-relaxed">
@@ -1229,11 +1229,15 @@ html,body{overflow-x:hidden;touch-action:pan-y;}
       });
     });
 
-    // Load more
+    // Load more (pa' mostrar todos los proyectos de una vez)
     document.getElementById('loadMoreBtn').addEventListener('click', () => {
-      visibleCount += 4;
-      renderGallery();
-    });
+    const filtered = currentFilter === 'all'
+    ? projects
+    : projects.filter(p => p.category === currentFilter);
+
+  visibleCount = filtered.length;
+  renderGallery();
+});
 
     // ===========================
     // MODAL
